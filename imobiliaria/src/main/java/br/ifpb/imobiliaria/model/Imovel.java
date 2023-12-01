@@ -14,6 +14,7 @@ public class Imovel {
 
     public Imovel() { }
 
+    //Teste
     public Imovel(Long idImovel, String endereco, Integer numeroQuartos, Integer numeroBanheiros, Double preco, StatusImovel status, TipoImovel tipo) {
         this.idImovel = idImovel;
         this.endereco = endereco;
