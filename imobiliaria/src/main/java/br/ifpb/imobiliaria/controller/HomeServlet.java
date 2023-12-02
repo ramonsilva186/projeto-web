@@ -1,11 +1,11 @@
-package br.ifpb.imobiliaria;
+package br.ifpb.imobiliaria.controller;
 
 import java.io.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
-public class HelloServlet extends HttpServlet {
+@WebServlet(name = "HomeServlet", value = "/home")
+public class HomeServlet extends HttpServlet {
     private String message;
 
     public void init() {
