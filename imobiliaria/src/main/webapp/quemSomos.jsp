@@ -10,7 +10,7 @@
 
 <header>
     <div id="logo">
-        <h1>Imobiliária XYZ</h1>
+        <h1>Imobiliária</h1>
     </div>
     <nav>
         <a href="index.jsp">Home</a>

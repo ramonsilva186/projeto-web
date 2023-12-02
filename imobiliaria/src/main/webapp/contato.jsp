@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Contato - Imobiliária XYZ</title>
+    <title>Contato - Imobiliária</title>
     <link rel="stylesheet" type="text/css" href="css/contato.css">
 </head>
 <body>
@@ -37,7 +37,7 @@
 </section>
 
 <footer>
-    <p>&copy; 2023 Imobiliária XYZ. Todos os direitos reservados.</p>
+    <p>&copy; 2023 Imobiliária. Todos os direitos reservados.</p>
 </footer>
 
 </body>

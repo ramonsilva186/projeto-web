@@ -3,7 +3,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Imobiliária XYZ</title>
+  <title>Imobiliária</title>
   <link rel="stylesheet" type="text/css" href="css/home.css">
 </head>
 <body>
@@ -22,14 +22,14 @@
 <section>
   <div class="imagem-container">
     <div>
-      <h2>Bem-vindo à Imobiliária XYZ</h2>
+      <h2>Bem-vindo à Imobiliária</h2>
       <p>Sua fonte confiável para encontrar a casa dos seus sonhos.</p>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>&copy; 2023 Imobiliária XYZ. Todos os direitos reservados.</p>
+  <p>&copy; 2023 Imobiliária. Todos os direitos reservados.</p>
 </footer>
 
 </body>
