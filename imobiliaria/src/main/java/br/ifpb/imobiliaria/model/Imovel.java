@@ -4,7 +4,9 @@ import br.ifpb.imobiliaria.enums.StatusImovel;
 import br.ifpb.imobiliaria.enums.TipoImovel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(of = "idImovel")
 @Entity
 @Table(name = "imovel")
 public class Imovel {
@@ -17,12 +19,13 @@ public class Imovel {
     private Integer numeroBanheiros;
     private Integer numeroGaragem;
     private Double preco;
+    @Enumerated(EnumType.STRING)
     private StatusImovel status;
+    @Enumerated(EnumType.STRING)
     private TipoImovel tipo;
 
     public Imovel() { }
 
-    //Teste
     public Imovel(Long idImovel, String endereco, Integer numeroQuartos, Integer numeroBanheiros, Integer numeroGaragem, Double preco, StatusImovel status, TipoImovel tipo) {
         this.idImovel = idImovel;
         this.endereco = endereco;
