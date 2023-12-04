@@ -16,6 +16,8 @@
     <a href="quemSomos.jsp">Quem Somos</a>
     <a href="anuncios.jsp">Anúncios</a>
     <a href="contato.jsp">Contato</a>
+    <a href="cadastro.jsp">Cadastro</a>
+    <a href="login.jsp">Login</a>
   </nav>
 </header>
 
