@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 
 import java.util.Date;
+
 @EqualsAndHashCode(of = "idContrato")
 @Entity
 @Table(name = "contrato")

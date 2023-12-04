@@ -29,6 +29,9 @@
         <label for="email">E-mail:</label>
         <input type="email" id="email" name="email" required>
 
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="telefone" required>
+
         <label for="mensagem">Mensagem:</label>
         <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
 
