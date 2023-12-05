@@ -1,10 +1,8 @@
 package br.ifpb.imobiliaria.dao;
 
 import br.ifpb.imobiliaria.model.Usuario;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
+import br.ifpb.imobiliaria.util.JPAUtil;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -16,21 +14,19 @@ public class UsuarioDAO  {
         this.em = JPAUtil.getEntityManager();
     }
 
-    public void salvar(Usuario usuario) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        EntityTransaction transaction = entityManager.getTransaction();
+    public Boolean cadastrarUsuario(Usuario usuario) {
 
         try {
-            transaction.begin();
-            entityManager.persist(usuario);
-            transaction.commit();
+            em.getTransaction().begin();
+            em.persist(usuario);
+            em.getTransaction().commit();
         } catch (Exception e) {
-            if (transaction != null && transaction.isActive())
-                transaction.rollback();
+            if (em.getTransaction().isActive())
+                em.getTransaction().rollback();
             e.printStackTrace();
-        } finally {
-            entityManager.close();
+            return false;
         }
+        return true;
     }
 
     public Usuario buscaPorId(Long id) {
@@ -86,6 +82,40 @@ public class UsuarioDAO  {
             if (transaction != null && transaction.isActive())
                 transaction.rollback();
             e.printStackTrace();
+        }
+    }
+
+    public Usuario autenticarUsuario(String email, String senha) {
+        try {
+            TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.email = :email AND u.senha = :senha", Usuario.class);
+            query.setParameter("email", email);
+            query.setParameter("senha", senha);
+
+            List<Usuario> usuarios = query.getResultList();
+
+            return usuarios.isEmpty() ? null : usuarios.get(0);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        List<Usuario> usuarios = listarTodos();
+
+        if (usuarios != null) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Lista de Usuários:\n");
+
+            for (Usuario usuario : usuarios) {
+                stringBuilder.append(usuario.toString()).append("\n");
+            }
+
+            return stringBuilder.toString();
+        } else {
+            return "Falha ao listar usuários";
         }
     }
 }

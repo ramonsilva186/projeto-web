@@ -1,8 +1,9 @@
 package br.ifpb.imobiliaria.controller;
 
+import br.ifpb.imobiliaria.dao.UsuarioDAO;
+import br.ifpb.imobiliaria.model.Usuario;
+import br.ifpb.imobiliaria.util.JPAUtil;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,14 +11,28 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/login")
+@WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 
-    @PersistenceContext
-    private EntityManager em;
-
+    private final UsuarioDAO usuarioDAO = new UsuarioDAO();
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String email = req.getParameter("email");
+        String senha = req.getParameter("senha");
+
+        EntityManager em = JPAUtil.getEntityManager();
+
+        try {
+            Usuario usuario = usuarioDAO.autenticarUsuario(email, senha);
+
+            if (usuario != null) {
+                resp.getWriter().println("Usuário autenticado com sucesso!");
+            } else {
+                resp.getWriter().println("Usuário não encontrado!");
+            }
+        } finally {
+            JPAUtil.close(em);
+        }
+
     }
 }
