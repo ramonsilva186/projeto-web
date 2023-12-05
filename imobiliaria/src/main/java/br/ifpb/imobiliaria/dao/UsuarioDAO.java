@@ -8,11 +8,12 @@ import jakarta.persistence.Persistence;
 
 import java.util.List;
 
-public class UsuarioDAO {
-    private EntityManagerFactory entityManagerFactory;
+public class UsuarioDAO  {
+
+    private final EntityManager em;
 
     public UsuarioDAO() {
-        this.entityManagerFactory = Persistence.createEntityManagerFactory("imobiliaria");
+        this.em = JPAUtil.getEntityManager();
     }
 
     public void salvar(Usuario usuario) {
@@ -33,59 +34,58 @@ public class UsuarioDAO {
     }
 
     public Usuario buscaPorId(Long id) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
         Usuario usuario = null;
 
         try {
-            usuario = entityManager.find(Usuario.class, id);
-        } finally {
-            entityManager.close();
+            usuario = em.find(Usuario.class, id);
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
         return usuario;
     }
 
     public List<Usuario> listarTodos() {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
         List<Usuario> usuarios = null;
+        
+        try{
+            TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u", Usuario.class);
+            usuarios = query.getResultList();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         return usuarios;
     }
 
     public void atualizar(Usuario usuario) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        EntityTransaction transaction = entityManager.getTransaction();
+        EntityTransaction transaction = em.getTransaction();
 
         try {
             transaction.begin();
-            entityManager.merge(usuario);
+            em.merge(usuario);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null && transaction.isActive())
                 transaction.rollback();
             e.printStackTrace();
-        } finally {
-            entityManager.close();
         }
     }
 
     public void excluir(Long id) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        EntityTransaction transaction = entityManager.getTransaction();
+        EntityTransaction transaction = em.getTransaction();
 
         try {
             transaction.begin();
-            Usuario usuario = entityManager.find(Usuario.class, id);
+            Usuario usuario = em.find(Usuario.class, id);
             if (usuario != null) {
-                entityManager.remove(usuario);
+                em.remove(usuario);
             }
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null && transaction.isActive())
                 transaction.rollback();
             e.printStackTrace();
-        } finally {
-            entityManager.close();
         }
     }
 }

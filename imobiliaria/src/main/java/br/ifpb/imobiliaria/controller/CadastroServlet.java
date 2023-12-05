@@ -16,8 +16,8 @@ import java.io.IOException;
 public class CadastroServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("Chegueiiiii mona");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        System.out.println("Cadastro de usuario");
         String nome = req.getParameter("nome");
         String email = req.getParameter("email");
         String telefone = req.getParameter("telefone");
