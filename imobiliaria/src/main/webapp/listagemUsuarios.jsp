@@ -6,7 +6,6 @@
     <title>Lista de Pacientes</title>
     <link rel="stylesheet" type="text/css" >
 
-
 </head>
 <body>
 <h1>Lista de Paciente</h1>
@@ -28,6 +27,8 @@
                     <td>${usr.email}</td>
                     <td>${usr.telefone}</td>
                     <td>${usr.cpf}</td>
+                    <td><a href="<c:url value="/atualizar-usuario?idUsuario=${usr.idUsuario}"/>">Editar</a></td>
+                    <td><a href="<c:url value="/atualizar-usuario?idUsuario=${usr.idUsuario}"/>">Excluir</a></td>
                 </tr>
             </c:forEach>
         </c:when>

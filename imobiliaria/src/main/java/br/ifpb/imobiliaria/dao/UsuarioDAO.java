@@ -45,8 +45,11 @@ public class UsuarioDAO  {
         List<Usuario> usuarios = null;
         
         try{
+            em.getTransaction().begin();
             TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u", Usuario.class);
             usuarios = query.getResultList();
+            em.getTransaction().commit();
+            em.clear();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -54,35 +57,34 @@ public class UsuarioDAO  {
         return usuarios;
     }
 
-    public void atualizar(Usuario usuario) {
+    public boolean atualizar(Usuario usuario) {
         EntityTransaction transaction = em.getTransaction();
 
         try {
             transaction.begin();
-            em.merge(usuario);
+            Query query = em.createQuery("UPDATE Usuario SET nome = :nome, email = :email, telefone = :telefone, cpf = :cpf WHERE idUsuario = :idUsuario");
+            query.setParameter("nome", usuario.getNome());
+            query.setParameter("email", usuario.getEmail());
+            query.setParameter("telefone", usuario.getTelefone());
+            query.setParameter("cpf", usuario.getCpf());
+            query.setParameter("idUsuario", usuario.getIdUsuario());
+            System.out.println("query: " + usuario + "\n");
+
+            var linhasAftadas = query.executeUpdate();
             transaction.commit();
+            em.clear();
+            return linhasAftadas > 0;
         } catch (Exception e) {
-            if (transaction != null && transaction.isActive())
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
+            }
             e.printStackTrace();
+            return false;
         }
     }
 
     public void excluir(Long id) {
-        EntityTransaction transaction = em.getTransaction();
 
-        try {
-            transaction.begin();
-            Usuario usuario = em.find(Usuario.class, id);
-            if (usuario != null) {
-                em.remove(usuario);
-            }
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null && transaction.isActive())
-                transaction.rollback();
-            e.printStackTrace();
-        }
     }
 
     public Usuario autenticarUsuario(String email, String senha) {
