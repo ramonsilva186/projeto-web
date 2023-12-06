@@ -14,7 +14,7 @@ public class Contrato {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idContrato;
     @ManyToOne
-    private Cliente cliente;
+    private Usuario usuario;
     @ManyToOne
     private Imovel imovel;
     @Temporal(TemporalType.DATE)
@@ -25,9 +25,9 @@ public class Contrato {
 
     public Contrato() { }
 
-    public Contrato(Long idContrato, Cliente cliente, Imovel imovel, Date dataInicio, Date dataFim, TipoContrato tipoContrato) {
+    public Contrato(Long idContrato, Usuario usuario, Imovel imovel, Date dataInicio, Date dataFim, TipoContrato tipoContrato) {
         this.idContrato = idContrato;
-        this.cliente = cliente;
+        this.usuario = usuario;
         this.imovel = imovel;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
@@ -42,12 +42,12 @@ public class Contrato {
         this.idContrato = idContrato;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setCliente(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Imovel getImovel() {
