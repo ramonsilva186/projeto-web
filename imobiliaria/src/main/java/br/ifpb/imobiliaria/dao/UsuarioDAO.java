@@ -84,7 +84,22 @@ public class UsuarioDAO  {
     }
 
     public void excluir(Long id) {
+        EntityTransaction transaction = em.getTransaction();
 
+        try {
+            transaction.begin();
+            Usuario usuario = em.find(Usuario.class, id);
+
+            if (usuario != null) {
+                em.remove(usuario);
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
     }
 
     public Usuario autenticarUsuario(String email, String senha) {

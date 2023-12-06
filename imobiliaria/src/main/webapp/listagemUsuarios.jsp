@@ -28,7 +28,7 @@
                     <td>${usr.telefone}</td>
                     <td>${usr.cpf}</td>
                     <td><a href="<c:url value="/atualizar-usuario?idUsuario=${usr.idUsuario}"/>">Editar</a></td>
-                    <td><a href="<c:url value="/atualizar-usuario?idUsuario=${usr.idUsuario}"/>">Excluir</a></td>
+                    <td><a href="<c:url value="/excluir-usuario?idUsuario=${usr.idUsuario}"/>">Excluir</a></td>
                 </tr>
             </c:forEach>
         </c:when>
