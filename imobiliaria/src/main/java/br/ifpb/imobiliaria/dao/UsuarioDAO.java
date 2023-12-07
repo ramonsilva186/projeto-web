@@ -118,6 +118,17 @@ public class UsuarioDAO  {
         return null;
     }
 
+    public long countUsuarios() {
+        try {
+            TypedQuery<Long> query = em.createQuery("SELECT COUNT(u) FROM Usuario u", Long.class);
+            return query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+
     @Override
     public String toString() {
         List<Usuario> usuarios = listarTodos();
@@ -135,4 +146,6 @@ public class UsuarioDAO  {
             return "Falha ao listar usuários";
         }
     }
+
+
 }

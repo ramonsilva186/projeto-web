@@ -3,12 +3,12 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Pacientes</title>
+    <title>Lista de Usuarios</title>
     <link rel="stylesheet" type="text/css" >
 
 </head>
 <body>
-<h1>Lista de Paciente</h1>
+<h1>Lista de Usuarios</h1>
 <table border="1">
     <c:set var="usuarios" value="${requestScope.listaUsuarios}"/>
 

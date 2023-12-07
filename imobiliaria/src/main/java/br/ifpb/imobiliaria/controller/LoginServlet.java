@@ -26,7 +26,8 @@ public class LoginServlet extends HttpServlet {
             Usuario usuario = usuarioDAO.autenticarUsuario(email, senha);
 
             if (usuario != null) {
-                resp.getWriter().println("Usuário autenticado com sucesso!");
+                resp.sendRedirect("homeAdm.jsp");
+                //resp.getWriter().println("Usuário autenticado com sucesso!");
             } else {
                 resp.getWriter().println("Usuário não encontrado!");
             }

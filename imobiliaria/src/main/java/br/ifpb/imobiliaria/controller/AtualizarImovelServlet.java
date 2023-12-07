@@ -9,11 +9,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-@WebServlet("/CadastroImovelServlet")
-public class CadastroImovelServlet extends HttpServlet {
+@WebServlet("/atualizar-imovel")
+public class AtualizarImovelServlet extends HttpServlet {
 
     private final ImovelDAO imovelDAO = new ImovelDAO();
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Cadastro de imovel");
@@ -23,24 +22,34 @@ public class CadastroImovelServlet extends HttpServlet {
         Integer numeroSuites = Integer.parseInt(req.getParameter("numeroSuites"));
         Integer numeroGaragem = Integer.parseInt(req.getParameter("numeroGaragem"));
         Double preco = Double.parseDouble(req.getParameter("preco"));
-        String status = req.getParameter("status");
-        String tipo = req.getParameter("tipo");
 
-        Imovel imovel = new Imovel();
-        imovel.setEndereco(endereco);
-        imovel.setNumeroQuartos(numeroQuartos);
-        imovel.setNumeroBanheiros(numeroBanheiros);
-        imovel.setNumeroSuites(numeroSuites);
-        imovel.setNumeroGaragem(numeroGaragem);
-        imovel.setPreco(preco);
-        //imovel.setStatus(status);
-        //imovel.setTipo(tipo);
+        Imovel imv = new Imovel();
+        imv.setEndereco(endereco);
+        imv.setNumeroQuartos(numeroQuartos);
+        imv.setNumeroBanheiros(numeroBanheiros);
+        imv.setNumeroSuites(numeroSuites);
+        imv.setNumeroGaragem(numeroGaragem);
+        imv.setPreco(preco);
+        imv.setIdImovel(Long.parseLong(req.getParameter("idImovel")));
 
-        if (!imovelDAO.cadastrarImovel(imovel)) {
-            resp.sendError(422, "Erro ao cadastrar imovel");
+        if (!imovelDAO.atualizar(imv)) {
+            resp.sendError(422, "Erro ao atualizar imovel");
         } else {
             resp.sendRedirect("listarImoveis");
         }
 
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String idImovel = req.getParameter("idImovel");
+        Imovel imv = imovelDAO.buscarPorId(Long.parseLong(idImovel));
+
+        if (imv != null) {
+            req.setAttribute("imovel", imv);
+            req.getRequestDispatcher("editarImovel.jsp").forward(req, resp);
+        } else {
+            resp.sendError(404, "Imovel não encontrado");
+        }
     }
 }
