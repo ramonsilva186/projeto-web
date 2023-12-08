@@ -70,6 +70,7 @@ public class ImovelDAO {
                 query.setParameter("numeroSuites", imovel.getNumeroSuites());
                 query.setParameter("numeroGaragem", imovel.getNumeroGaragem());
                 query.setParameter("preco", imovel.getPreco());
+                query.setParameter("idImovel", imovel.getIdImovel());
                 System.out.println("query:" + imovel + "\n");
 
                 var linhasAfetadas = query.executeUpdate();

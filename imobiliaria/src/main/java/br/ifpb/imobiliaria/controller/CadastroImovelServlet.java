@@ -1,6 +1,8 @@
 package br.ifpb.imobiliaria.controller;
 
 import br.ifpb.imobiliaria.dao.ImovelDAO;
+import br.ifpb.imobiliaria.enums.StatusImovel;
+import br.ifpb.imobiliaria.enums.TipoImovel;
 import br.ifpb.imobiliaria.model.Imovel;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -33,8 +35,8 @@ public class CadastroImovelServlet extends HttpServlet {
         imovel.setNumeroSuites(numeroSuites);
         imovel.setNumeroGaragem(numeroGaragem);
         imovel.setPreco(preco);
-        //imovel.setStatus(status);
-        //imovel.setTipo(tipo);
+        imovel.setStatus(StatusImovel.valueOf(status));
+        imovel.setTipo(TipoImovel.valueOf(tipo));
 
         if (!imovelDAO.cadastrarImovel(imovel)) {
             resp.sendError(422, "Erro ao cadastrar imovel");

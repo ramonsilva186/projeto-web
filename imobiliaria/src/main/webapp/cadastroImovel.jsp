@@ -27,7 +27,7 @@
 
     <label for="preco">Preço:</label>
     <input type="number" id="preco" name="preco" step="0.01" required><br>
-    <!--
+
     <label for="status">Status:</label>
     <select id="status" name="status">
         <option value="DISPONIVEL">Disponível</option>
@@ -38,9 +38,10 @@
     <select id="tipo" name="tipo">
         <option value="CASA">Casa</option>
         <option value="APARTAMENTO">Apartamento</option>
-         Adicione outros tipos conforme necessário
+        <option value="TERRENO">Terreno</option>
+        <option value="COMERCIAL">Comercial</option>
     </select><br>
-    -->
+
     <input type="submit" value="Cadastrar Imóvel">
 </form>
 

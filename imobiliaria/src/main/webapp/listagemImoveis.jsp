@@ -21,6 +21,8 @@
                 <th>Num. Suites</th>
                 <th>Num. Garagens</th>
                 <th>Preco</th>
+                <th>Status</th>
+                <th>Tipo</th>
             </tr>
 
             <c:forEach var="imv" items="${imoveis}">
@@ -31,8 +33,11 @@
                     <td>${imv.numeroSuites}</td>
                     <td>${imv.numeroGaragem}</td>
                     <td>${imv.preco}</td>
-                    <td><a href="<c:url value="/atualizar-imovel?idUsuario=${imv.idImovel}"/>">Editar</a></td>
-                    <td><a href="<c:url value="/excluir-imovel?idUsuario=${imv.idImovel}"/>">Excluir</a></td>
+                    <td>${imv.status}</td>
+                    <td>${imv.tipo}</td>
+
+                    <td><a href="<c:url value="/atualizar-imovel?idImovel=${imv.idImovel}"/>">Editar</a></td>
+                    <td><a href="<c:url value="/excluir-imovel?idImovel=${imv.idImovel}"/>">Excluir</a></td>
 
                 </tr>
             </c:forEach>

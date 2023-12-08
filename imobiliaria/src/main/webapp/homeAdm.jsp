@@ -14,8 +14,8 @@
     </div>
     <nav>
         <a href="anuncios.jsp">Anúncios</a>
-        <a href="listagemUsuarios.jsp">Usuarios</a>
-        <a href="cadastroImovel.jsp">Imoveis</a>
+        <a href="listarUsuarios">Usuarios</a>
+        <a href="listarImoveis">Imoveis</a>
     </nav>
 </header>
 

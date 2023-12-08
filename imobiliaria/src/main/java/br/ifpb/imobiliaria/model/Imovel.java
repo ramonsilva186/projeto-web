@@ -14,6 +14,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Imovel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,11 +39,11 @@ public class Imovel {
     @Min(value = 0, message = "O preco não pode ser negativo")
     private Double preco;
 
-    //@NotNull(message = "O status do imovel não pode ser nulo")
-    //@Enumerated(EnumType.STRING)
-    //private StatusImovel status;
+    @NotNull(message = "O status do imovel não pode ser nulo")
+    @Enumerated(EnumType.STRING)
+    private StatusImovel status;
 
-    //@NotNull(message = "O tipo do imovel não pode ser nulo")
-    //@Enumerated(EnumType.STRING)
-    //private TipoImovel tipo;
+    @NotNull(message = "O tipo do imovel não pode ser nulo")
+    @Enumerated(EnumType.STRING)
+    private TipoImovel tipo;
 }
