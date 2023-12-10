@@ -24,11 +24,15 @@ public class LoginServlet extends HttpServlet {
 
         try {
             Usuario usuario = usuarioDAO.autenticarUsuario(email, senha);
-
+            System.out.println(usuario);
             if (usuario != null) {
+                System.out.println("Opa logado");
+                req.getSession().setAttribute("usuario", usuario);
+                System.out.println(req.getSession());
                 resp.sendRedirect("homeAdm.jsp");
                 //resp.getWriter().println("Usuário autenticado com sucesso!");
             } else {
+                System.out.println("Falha no login");
                 resp.getWriter().println("Usuário não encontrado!");
             }
         } finally {

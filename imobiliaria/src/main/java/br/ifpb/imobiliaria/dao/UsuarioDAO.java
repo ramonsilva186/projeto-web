@@ -105,10 +105,13 @@ public class UsuarioDAO  {
     public Usuario autenticarUsuario(String email, String senha) {
         try {
             TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.email = :email AND u.senha = :senha", Usuario.class);
+            System.out.println("Email: " + email);
+            System.out.println("Senha: " + senha);
             query.setParameter("email", email);
             query.setParameter("senha", senha);
 
             List<Usuario> usuarios = query.getResultList();
+            System.out.println(usuarios);
 
             return usuarios.isEmpty() ? null : usuarios.get(0);
         }catch (Exception e){

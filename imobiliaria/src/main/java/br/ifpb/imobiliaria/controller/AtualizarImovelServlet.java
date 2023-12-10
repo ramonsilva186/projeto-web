@@ -18,6 +18,7 @@ public class AtualizarImovelServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Cadastro de imovel");
+
         Long Id = Long.parseLong(req.getParameter("idImovel"));
         String endereco = req.getParameter("endereco");
         Integer numeroQuartos = Integer.parseInt(req.getParameter("numeroQuartos"));

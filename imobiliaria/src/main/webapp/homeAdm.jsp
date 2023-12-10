@@ -16,6 +16,7 @@
         <a href="anuncios.jsp">Anúncios</a>
         <a href="listarUsuarios">Usuarios</a>
         <a href="listarImoveis">Imoveis</a>
+        <a href="logout">Logout</a>
     </nav>
 </header>
 

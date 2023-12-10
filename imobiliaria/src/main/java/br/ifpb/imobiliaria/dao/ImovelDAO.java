@@ -63,14 +63,21 @@ public class ImovelDAO {
 
             try {
                 transaction.begin();
-                Query query = em.createQuery("UPDATE Imovel i SET i.endereco = :endereco, i.numeroQuartos = :numeroQuartos, i.numeroBanheiros = :numeroBanheiros, i.numeroSuites = :numeroSuites, i.numeroGaragem = :numeroGaragem, i.preco = :preco WHERE i.idImovel = :idImovel");
+                Query query = em.createQuery("UPDATE Imovel i SET i.endereco = :endereco, " +
+                        "i.numeroQuartos = :numeroQuartos, i.numeroBanheiros = :numeroBanheiros, " +
+                        "i.numeroSuites = :numeroSuites, i.numeroGaragem = :numeroGaragem, " +
+                        "i.preco = :preco, i.status = :status, i.tipo = :tipo WHERE i.idImovel = :idImovel");
+
                 query.setParameter("endereco", imovel.getEndereco());
                 query.setParameter("numeroQuartos", imovel.getNumeroQuartos());
                 query.setParameter("numeroBanheiros", imovel.getNumeroBanheiros());
                 query.setParameter("numeroSuites", imovel.getNumeroSuites());
                 query.setParameter("numeroGaragem", imovel.getNumeroGaragem());
                 query.setParameter("preco", imovel.getPreco());
+                query.setParameter("status", imovel.getStatus());
+                query.setParameter("tipo", imovel.getTipo());
                 query.setParameter("idImovel", imovel.getIdImovel());
+
                 System.out.println("query:" + imovel + "\n");
 
                 var linhasAfetadas = query.executeUpdate();
