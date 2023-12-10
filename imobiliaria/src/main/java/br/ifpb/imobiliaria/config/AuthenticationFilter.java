@@ -31,7 +31,11 @@ public class AuthenticationFilter implements Filter {
         HttpSession session = httpRequest.getSession(false);
 
         // Permitir acesso ao servlet de logout
-        if (httpRequest.getRequestURI().endsWith("logout") || httpRequest.getRequestURI().endsWith("LoginServlet")) {
+        if (httpRequest.getRequestURI().endsWith("logout") ||
+            httpRequest.getRequestURI().endsWith("LoginServlet") ||
+            httpRequest.getRequestURI().endsWith("cadastro.jsp") ||
+            httpRequest.getRequestURI().endsWith("CadastroServlet")
+        ) {
             chain.doFilter(request, response);
             return;
         }

@@ -50,5 +50,6 @@
 </table>
 <br>
 <a href="cadastroImovel.jsp">Novo Imovel</a>
+<a href="homeAdm.jsp">Voltar</a>
 </body>
 </html>

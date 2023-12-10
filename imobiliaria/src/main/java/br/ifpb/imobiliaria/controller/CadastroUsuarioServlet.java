@@ -29,11 +29,11 @@ public class CadastroUsuarioServlet extends HttpServlet {
         user.setCpf(cpf);
         user.setSenha(senha);
 
-        if (user.isAdmin()){
-//            TODO Fazer tela de redirect para mensagem mais bonita
-            resp.getWriter().println("Já Existe um usuario administrado");
+        if(!usuarioDAO.existeAdm()){
+            user.setAdmin(true);
         }
-        else if (!usuarioDAO.cadastrarUsuario(user)){
+
+        if (!usuarioDAO.cadastrarUsuario(user)){
             resp.sendError(422, "Erro ao cadastrar usuario");
         }else{
             resp.sendRedirect("listarUsuarios");

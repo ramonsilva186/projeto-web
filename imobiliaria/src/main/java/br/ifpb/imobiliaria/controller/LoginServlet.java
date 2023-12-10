@@ -33,7 +33,8 @@ public class LoginServlet extends HttpServlet {
                 //resp.getWriter().println("Usuário autenticado com sucesso!");
             } else {
                 System.out.println("Falha no login");
-                resp.getWriter().println("Usuário não encontrado!");
+                resp.getWriter().println("Usuario não encontrado!");
+
             }
         } finally {
             JPAUtil.close(em);

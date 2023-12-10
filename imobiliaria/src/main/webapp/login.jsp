@@ -17,6 +17,9 @@
     <input type="password" id="senha" name="senha" required><br>
 
     <input type="submit" value="Entrar">
+
 </form>
+
+<a href="cadastro.jsp">Cadastre-se</a>
 </body>
 </html>

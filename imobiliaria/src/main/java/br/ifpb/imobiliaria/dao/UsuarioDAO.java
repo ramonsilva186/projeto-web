@@ -151,4 +151,15 @@ public class UsuarioDAO  {
     }
 
 
+    public boolean existeAdm() {
+        try {
+            Query query = em.createQuery("SELECT COUNT(u) FROM Usuario u WHERE u.isAdmin = true");
+
+            Long count = (Long) query.getSingleResult();
+
+            return count > 0;
+        } catch (NoResultException e) {
+            return false;
+        }
+    }
 }

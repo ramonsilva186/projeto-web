@@ -40,5 +40,6 @@
 </table>
 <br>
 <a href="cadastro.jsp">Novo Usuario</a>
+<a href="homeAdm.jsp">Voltar</a>
 </body>
 </html>
