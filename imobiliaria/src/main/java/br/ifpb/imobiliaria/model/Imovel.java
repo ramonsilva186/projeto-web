@@ -30,11 +30,12 @@ public class Imovel {
     @Min(value = 0, message = "O número de banheiros não pode ser negativo")
     private Integer numeroBanheiros;
 
-    @Min(value = 0, message = "O número de suites não pode ser negativo")
-    private Integer numeroSuites;
-
     @Min(value = 0, message = "O número de garagens não pode ser negativo")
     private Integer numeroGaragem;
+
+    @NotNull
+    @Min(value = 0, message = "A área não pode ser negativa")
+    private Double area;
 
     @Min(value = 0, message = "O preco não pode ser negativo")
     private Double preco;

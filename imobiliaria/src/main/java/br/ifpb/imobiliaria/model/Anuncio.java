@@ -1,14 +1,15 @@
 package br.ifpb.imobiliaria.model;
 
 import br.ifpb.imobiliaria.enums.StatusAnuncio;
+import br.ifpb.imobiliaria.enums.TipoAnuncio;
 import jakarta.persistence.*;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import java.sql.Date;
 import java.util.List;
-
 
 @Entity
 @Table(name = "anuncio")
@@ -17,6 +18,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Anuncio {
 
     @Id
@@ -32,7 +34,14 @@ public class Anuncio {
     private Usuario usuario;
 
     @NotNull
+    private String titulo;
+
+    @NotNull
+    private String descricao;
+
+    @NotNull
     @ElementCollection
+    @CollectionTable
     private List<String> fotos;
 
     @NotNull
@@ -42,6 +51,6 @@ public class Anuncio {
     private StatusAnuncio status;
 
     @NotNull
-    private Integer visualizacoes;
+    private TipoAnuncio tipo;
 
 }

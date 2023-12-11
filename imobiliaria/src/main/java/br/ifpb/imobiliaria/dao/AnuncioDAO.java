@@ -26,7 +26,7 @@ public class AnuncioDAO {
             if (em.getTransaction().isActive())
                 em.getTransaction().rollback();
             e.printStackTrace();
-            return false;
+            throw e;
         }
         return true;
 

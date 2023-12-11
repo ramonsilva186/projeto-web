@@ -22,7 +22,6 @@ public class CadastroImovelServlet extends HttpServlet {
         String endereco = req.getParameter("endereco");
         Integer numeroQuartos = Integer.parseInt(req.getParameter("numeroQuartos"));
         Integer numeroBanheiros = Integer.parseInt(req.getParameter("numeroBanheiros"));
-        Integer numeroSuites = Integer.parseInt(req.getParameter("numeroSuites"));
         Integer numeroGaragem = Integer.parseInt(req.getParameter("numeroGaragem"));
         Double preco = Double.parseDouble(req.getParameter("preco"));
         String status = req.getParameter("status");
@@ -32,13 +31,12 @@ public class CadastroImovelServlet extends HttpServlet {
         imovel.setEndereco(endereco);
         imovel.setNumeroQuartos(numeroQuartos);
         imovel.setNumeroBanheiros(numeroBanheiros);
-        imovel.setNumeroSuites(numeroSuites);
         imovel.setNumeroGaragem(numeroGaragem);
         imovel.setPreco(preco);
         imovel.setStatus(StatusImovel.valueOf(status));
         imovel.setTipo(TipoImovel.valueOf(tipo));
 
-        if (!imovelDAO.cadastrarImovel(imovel)) {
+        if (imovelDAO.cadastrarImovel(imovel) == null) {
             resp.sendError(422, "Erro ao cadastrar imovel");
         } else {
             resp.sendRedirect("listarImoveis");

@@ -7,17 +7,64 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ImovelDAO {
 
-        private final EntityManager em;
+    private final EntityManager em;
 
-        public ImovelDAO() {
-            this.em = JPAUtil.getEntityManager();
+    public ImovelDAO() {
+        this.em = JPAUtil.getEntityManager();
+    }
+
+    public List<String> salvarFotos(Long imovelId, List<InputStream> fotos, String realPath) {
+
+        String diretorioFotos = realPath.concat(imovelId.toString()).concat("/");
+
+        File diretorio = new File(diretorioFotos);
+        if (!diretorio.exists()) {
+            if (!diretorio.mkdirs()) {
+                throw new RuntimeException("Não foi possível criar o diretório de fotos.");
+            }
         }
 
-        public Boolean cadastrarImovel(Imovel imovel) {
+        List<String> caminhosFotos = new ArrayList<>();
+
+        try {
+            for (int i = 0; i < fotos.size(); i++) {
+                String nomeArquivo = "foto_" + imovelId + "_" + i + ".jpg";
+                Path caminhoCompleto = Path.of(diretorioFotos, nomeArquivo);
+
+                // Copiar arquivo
+                java.nio.file.Files.copy(fotos.get(i), caminhoCompleto, StandardCopyOption.REPLACE_EXISTING);
+
+                // Adicionar caminho à lista
+                caminhosFotos.add(caminhoCompleto.toString());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Erro ao salvar fotos.", e);
+        } finally {
+            // Fechar InputStreams
+            fotos.forEach(inputStream -> {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    // Tratar ou registrar a exceção, conforme necessário
+                    e.printStackTrace();
+                }
+            });
+        }
+
+        return caminhosFotos;
+    }
+
+    public Imovel  cadastrarImovel(Imovel imovel) {
 
             try {
                 em.getTransaction().begin();
@@ -27,9 +74,9 @@ public class ImovelDAO {
                 if (em.getTransaction().isActive())
                     em.getTransaction().rollback();
                 e.printStackTrace();
-                return false;
+                return null;
             }
-            return true;
+            return imovel;
         }
 
         public Imovel buscarPorId(Long id) {
@@ -65,13 +112,12 @@ public class ImovelDAO {
                 transaction.begin();
                 Query query = em.createQuery("UPDATE Imovel i SET i.endereco = :endereco, " +
                         "i.numeroQuartos = :numeroQuartos, i.numeroBanheiros = :numeroBanheiros, " +
-                        "i.numeroSuites = :numeroSuites, i.numeroGaragem = :numeroGaragem, " +
+                       "i.numeroGaragem = :numeroGaragem, " +
                         "i.preco = :preco, i.status = :status, i.tipo = :tipo WHERE i.idImovel = :idImovel");
 
                 query.setParameter("endereco", imovel.getEndereco());
                 query.setParameter("numeroQuartos", imovel.getNumeroQuartos());
                 query.setParameter("numeroBanheiros", imovel.getNumeroBanheiros());
-                query.setParameter("numeroSuites", imovel.getNumeroSuites());
                 query.setParameter("numeroGaragem", imovel.getNumeroGaragem());
                 query.setParameter("preco", imovel.getPreco());
                 query.setParameter("status", imovel.getStatus());

@@ -19,9 +19,6 @@
     <label for="numeroBanheiros">Número de Banheiros:</label>
     <input type="number" id="numeroBanheiros" name="numeroBanheiros" required><br>
 
-    <label for="numeroSuites">Número de Suítes:</label>
-    <input type="number" id="numeroSuites" name="numeroSuites" required><br>
-
     <label for="numeroGaragem">Número de Garagens:</label>
     <input type="number" id="numeroGaragem" name="numeroGaragem" required><br>
 

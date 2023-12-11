@@ -33,7 +33,6 @@ public class AtualizarImovelServlet extends HttpServlet {
                 .endereco(endereco)
                 .numeroQuartos(numeroQuartos)
                 .numeroBanheiros(numeroBanheiros)
-                .numeroSuites(numeroSuites)
                 .numeroGaragem(numeroGaragem)
                 .preco(preco)
                 .status(status)
