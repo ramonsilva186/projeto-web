@@ -18,6 +18,6 @@ public class ExcluirAnuncioServlet extends HttpServlet {
         Long idAnuncio = Long.parseLong(req.getParameter("idAnuncio"));
 
         anuncioDAO.excluir(idAnuncio);
-        resp.sendRedirect("listarAnuncios");
+        resp.sendRedirect("anuncios");
     }
 }

@@ -27,6 +27,7 @@
         <p>${anuncio.descricao}</p>
         <p>Anunciado por: ${anuncio.usuario.nome}</p>
         <p>Data do anúncio: ${anuncio.anunciadoEm}</p>
+        <a href="<c:url value="/excluir-anuncio?idAnuncio=${anuncio.idAnuncio}"/>">Delete</a>
 
         <!-- Carrossel do Bootstrap -->
         <div id="carouselExample${anuncio.idAnuncio}" class="carousel slide" data-ride="carousel">
