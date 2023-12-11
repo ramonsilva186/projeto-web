@@ -13,9 +13,10 @@
         <h1>Imobiliária</h1>
     </div>
     <nav>
+        <a href="quemSomos.jsp">Quem Somos</a>
+        <a href="contato.jsp">Contato</a>
         <a href="anuncios">Anúncios</a>
         <a href="listarUsuarios">Usuarios</a>
-        <a href="listarImoveis">Imoveis</a>
         <a href="logout">Logout</a>
     </nav>
 </header>
