@@ -73,12 +73,9 @@
     <label for="preco">Preço (R$)</label>
     <input type="text" id="preco" name="preco" oninput="atualizarCampoDinheiro()" placeholder="Digite o valor">
 
-
 <%--    fazer contato --%>
 
-
-
-    <input type="submit" value="Cadastrar">
+    <input type="submit"  value="Cadastrar">
 </form>
 
 </body>

@@ -49,7 +49,7 @@ public class AnuncioDAO {
 
         try {
             em.getTransaction().begin();
-            anuncios = em.createQuery("SELECT a FROM Anuncio a", Anuncio.class).getResultList();
+            anuncios = em.createQuery("SELECT DISTINCT a FROM Anuncio a LEFT JOIN FETCH a.fotos", Anuncio.class).getResultList();
             em.getTransaction().commit();
             em.clear();
         } catch (Exception e) {

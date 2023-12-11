@@ -1,0 +1,59 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+.anuncio {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.anuncio h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.anuncio p {
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.anuncio img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+.link {
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.link:hover {
+    background-color: #0056b3;
+}
+
+.carousel {
+    max-width: 100%;
+    margin-top: 15px;
+}
+
+.carousel-item img {
+    max-height: 300px; /* Ajuste a altura conforme necessário */
+    margin: auto;
+}

@@ -13,7 +13,7 @@
         <h1>Imobiliária</h1>
     </div>
     <nav>
-        <a href="cadastroAnuncio.jsp">Anúncios</a>
+        <a href="anuncios">Anúncios</a>
         <a href="listarUsuarios">Usuarios</a>
         <a href="listarImoveis">Imoveis</a>
         <a href="logout">Logout</a>

@@ -33,6 +33,7 @@ public class AuthenticationFilter implements Filter {
         // Permitir acesso ao servlet de logout
         if (httpRequest.getRequestURI().endsWith("logout") ||
             httpRequest.getRequestURI().endsWith("LoginServlet") ||
+            httpRequest.getRequestURI().endsWith("login.jsp") ||
             httpRequest.getRequestURI().endsWith("cadastro.jsp") ||
             httpRequest.getRequestURI().endsWith("CadastroServlet")
         ) {

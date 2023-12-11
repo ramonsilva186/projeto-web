@@ -78,7 +78,7 @@ public class CadastroAnuncioServlet extends HttpServlet {
                 ServletContext servletContext = req.getServletContext();
                 String realPath = servletContext.getRealPath("/WEB-INF/images/");  // Ajuste conforme a estrutura do seu projeto
 
-                List<String> fotosSalvas = imovelDAO.salvarFotos(imovelCadastrado.getIdImovel(), fotos, realPath);
+                List<String> fotosSalvas = imovelDAO.salvarFotos(imovelCadastrado.getIdImovel(), fotos);
 
                 Anuncio anuncio = Anuncio.builder()
                         .imovel(imovelCadastrado)
@@ -92,6 +92,7 @@ public class CadastroAnuncioServlet extends HttpServlet {
                             .build();
 
                 anuncioDAO.cadastrarAnuncio(anuncio);
+                resp.sendRedirect("/imobiliaria/anuncios");
             }catch (Exception ex){
                 ex.printStackTrace();
                 resp.sendError(500, "erro ao publicar anuncio");

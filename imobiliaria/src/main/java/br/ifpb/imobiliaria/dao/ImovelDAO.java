@@ -23,13 +23,14 @@ public class ImovelDAO {
         this.em = JPAUtil.getEntityManager();
     }
 
-    public List<String> salvarFotos(Long imovelId, List<InputStream> fotos, String realPath) {
+    public List<String> salvarFotos(Long anuncioId, List<InputStream> fotos) {
 
-        String diretorioFotos = realPath.concat(imovelId.toString()).concat("/");
+        String diretorioFotos = ("../webapps/imobiliaria/images/").concat(anuncioId.toString()).concat("/");
 
         File diretorio = new File(diretorioFotos);
         if (!diretorio.exists()) {
             if (!diretorio.mkdirs()) {
+                System.out.println("Não foi possivel criar o directorio de fotos");
                 throw new RuntimeException("Não foi possível criar o diretório de fotos.");
             }
         }
@@ -38,14 +39,16 @@ public class ImovelDAO {
 
         try {
             for (int i = 0; i < fotos.size(); i++) {
-                String nomeArquivo = "foto_" + imovelId + "_" + i + ".jpg";
+                String nomeArquivo = "foto_" + anuncioId + "_" + i + ".jpg";
                 Path caminhoCompleto = Path.of(diretorioFotos, nomeArquivo);
+
+                System.out.println(caminhoCompleto);
 
                 // Copiar arquivo
                 java.nio.file.Files.copy(fotos.get(i), caminhoCompleto, StandardCopyOption.REPLACE_EXISTING);
 
                 // Adicionar caminho à lista
-                caminhosFotos.add(caminhoCompleto.toString());
+                caminhosFotos.add("/images/" + anuncioId + "/" + nomeArquivo);
             }
         } catch (IOException e) {
             throw new RuntimeException("Erro ao salvar fotos.", e);
@@ -63,6 +66,7 @@ public class ImovelDAO {
 
         return caminhosFotos;
     }
+
 
     public Imovel  cadastrarImovel(Imovel imovel) {
 
