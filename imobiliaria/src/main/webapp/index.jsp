@@ -30,6 +30,7 @@
   </div>
 </section>
 
+
 <footer>
   <p>&copy; 2023 Imobiliária. Todos os direitos reservados.</p>
 </footer>
